@@ -12,8 +12,9 @@ class ChartContainer extends Component {
 
     render() {
         return (
-            <h2>{this.state.title}</h2>
-            <div id="chart-container"></div>
+            <div id="chart-container">
+                <h2>{this.state.title}</h2>
+            </div>
         );
     }
 }
