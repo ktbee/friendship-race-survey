@@ -5,15 +5,13 @@ class ChartContainer extends Component {
     constructor() {
         super();
 
-        this.state = {
-            title: 'Race and Friendship'
-        };
+        this.state = {};
     }
 
     render() {
         return (
-            <div id="chart-container">
-                Charts go here
+            <div>
+                <h2>Charts go Here</h2>
             </div>
         );
     }

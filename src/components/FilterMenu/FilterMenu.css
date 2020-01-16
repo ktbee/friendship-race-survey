@@ -1,0 +1,34 @@
+.filter-menu {
+    margin: 1rem;
+}
+
+.filter-menu--heading {
+    background-color: var(--menu-color);
+    padding: 0.5rem;
+}
+
+.filter-menu--heading-checkbox {
+    width: 100%;
+}
+
+.filter-menu--heading .ui.checkbox label {
+    color: #ffffff !important;
+    font-family: Oswald, Impact, 'Franklin Gothic Bold', sans-serif;
+}
+
+.filter-menu--options {
+    display: none;
+    padding: 1rem;
+}
+
+li .ui.checkbox label {
+    font-size: 1.125rem;
+}
+
+.filter-menu--options li {
+    list-style: none;
+}
+
+.filter-menu--options ul {
+    padding-left: 2rem;
+}

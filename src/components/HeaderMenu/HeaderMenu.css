@@ -1,18 +1,17 @@
 :root {
-  --height-header-desktop: 7.1875rem;
-  --height-header-tablet: 6rem;
-  --height-header-phone: 5rem;
+    --height-header-desktop: 7.1875rem;
+    --height-header-tablet: 6rem;
+    --height-header-phone: 5rem;
 }
 
-
 .ui.menu.header-menu {
-    background-color: #00B86E;
+    background-color: var(--menu-color);
     border: none;
     border-radius: 0;
     height: var(--height-header-desktop);
 }
 
-.ui.menu.header-menu h2 {
+.ui.menu.header-menu h1 {
     color: #ffffff;
     font-size: 3rem;
 }
@@ -21,7 +20,7 @@
     width: var(--height-header-desktop);
 }
 
-.ui.menu.header-menu a   {
+.ui.menu.header-menu a {
     display: block;
     height: 100%;
     width: calc(var(--height-header-desktop) - 10%);
@@ -37,7 +36,7 @@
         height: var(--height-header-tablet);
     }
 
-    .ui.menu.header-menu h2 {
+    .ui.menu.header-menu h1 {
         color: #ffffff;
         font-size: 2.5rem;
     }
@@ -46,7 +45,7 @@
         width: var(--height-header-tablet);
     }
 
-    .ui.menu.header-menu a   {
+    .ui.menu.header-menu a {
         width: calc(var(--height-header-tablet) - 10%);
     }
 }
@@ -57,7 +56,7 @@
         height: var(--height-header-phone);
     }
 
-    .ui.menu.header-menu h2 {
+    .ui.menu.header-menu h1 {
         color: #ffffff;
         font-size: 2rem;
     }
@@ -66,7 +65,7 @@
         width: var(--height-header-phone);
     }
 
-    .ui.menu.header-menu a   {
+    .ui.menu.header-menu a {
         width: calc(var(--height-header-phone) - 10%);
     }
 }
