@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Responsive } from 'semantic-ui-react';
 
 import ChartContainer from '@Components/ChartContainer';
 import FilterMenu from '@Components/FilterMenu';
@@ -30,14 +30,22 @@ class ContentContainer extends Component {
                     </p>
                 </div>
                 <Grid stackable>
-                    <Grid.Row>
+                    <Responsive as={Grid.Row} minWidth={771}>
                         <Grid.Column width={10}>
                             <ChartContainer />
                         </Grid.Column>
                         <Grid.Column width={6}>
                             <FilterMenu />
                         </Grid.Column>
-                    </Grid.Row>
+                    </Responsive>
+                    <Responsive as={Grid.Row} maxWidth={770}>
+                        <Grid.Column width={6}>
+                            <FilterMenu />
+                        </Grid.Column>
+                        <Grid.Column width={16}>
+                            <ChartContainer />
+                        </Grid.Column>
+                    </Responsive>
                 </Grid>
             </Container>
         );
