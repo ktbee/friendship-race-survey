@@ -13,7 +13,7 @@ class ChartContainer extends Component {
     render() {
         return (
             <div id="chart-container">
-                <h2>{this.state.title}</h2>
+                Charts go here
             </div>
         );
     }
