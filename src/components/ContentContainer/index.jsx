@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Grid, Responsive } from 'semantic-ui-react';
 
+import './ContentContainer.css';
 import ChartContainer from '@Components/ChartContainer';
 import FilterMenu from '@Components/FilterMenu';
 
 class ContentContainer extends Component {
     constructor() {
         super();
-
-        this.state = {
-            title: 'Race and Friendship'
-        };
     }
 
     render() {
@@ -29,7 +26,7 @@ class ContentContainer extends Component {
                         montes, nascetur ridiculus mus.
                     </p>
                 </div>
-                <Grid stackable>
+                <Grid stackable className="content-container--visualizations">
                     <Responsive as={Grid.Row} minWidth={771}>
                         <Grid.Column width={10}>
                             <ChartContainer />
