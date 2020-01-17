@@ -19,6 +19,9 @@
 .filter-menu--options {
     display: none;
     padding: 1rem;
+    border-left: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
 }
 
 li .ui.checkbox label {
@@ -30,5 +33,5 @@ li .ui.checkbox label {
 }
 
 .filter-menu--options ul {
-    padding-left: 2rem;
+    padding-left: 0rem;
 }
