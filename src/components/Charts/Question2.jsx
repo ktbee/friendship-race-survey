@@ -1,7 +1,8 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
+import PropTypes from 'prop-types';
 
-const Question1 = ({ commonProps, responses = [] }) => {
+const Question2 = ({ commonProps, responses = [] }) => {
     if (!responses.length) return null;
 
     const responseData = {
@@ -38,16 +39,16 @@ const Question1 = ({ commonProps, responses = [] }) => {
         <div className="chart">
             <h3>How important is it to have friends of different races?</h3>
             <ResponsivePie
-                margin={{ top: 20, bottom: 20 }}
+                margin={{ top: 20, bottom: 20, left: 120, right: 120 }}
                 data={compiledData}
                 innerRadius={0.6}
                 padAngle={0.5}
                 cornerRadius={5}
-                radialLabelsLinkDiagonalLength={6}
+                radialLabelsLinkDiagonalLength={3}
                 radialLabelsLinkStrokeWidth={1}
                 radialLabelsLinkColor={{ from: 'color' }}
                 radialLabelsTextColor="inherit:darker(1.2)"
-                radialLabelsTextStrokeWidth={10}
+                radialLabelsLinkHorizontalLength={10}
                 slicesLabelsTextColor="#ffffff"
                 {...commonProps}
             />
@@ -55,4 +56,9 @@ const Question1 = ({ commonProps, responses = [] }) => {
     );
 };
 
-export default Question1;
+Question2.propTypes = {
+    commonProps: PropTypes.object.isRequired,
+    responses: PropTypes.array.isRequired
+};
+
+export default Question2;

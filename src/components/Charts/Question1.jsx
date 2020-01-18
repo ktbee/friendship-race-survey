@@ -1,17 +1,10 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
+import PropTypes from 'prop-types';
 
 const Question1 = ({ commonProps, responses = [] }) => {
     if (!responses.length) return null;
 
-    // const commonProps = {
-    //
-    //     indexBy: 'id',
-    //     padding: 0.2,
-    //     labelSkipWidth: 16,
-    //     labelSkipHeight: 16,
-    //     animate: true
-    // };
     const responseData = {
         None: 0,
         '1-4': 0,
@@ -48,6 +41,11 @@ const Question1 = ({ commonProps, responses = [] }) => {
             />
         </div>
     );
+};
+
+Question1.propTypes = {
+    commonProps: PropTypes.object.isRequired,
+    responses: PropTypes.array.isRequired
 };
 
 export default Question1;
