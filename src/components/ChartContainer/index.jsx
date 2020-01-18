@@ -5,6 +5,7 @@ import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
 import Question2 from '@Components/Charts/Question2';
 
+const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_URL =
     'https://docs.google.com/spreadsheets/d/16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE/edit?usp=sharing';
 const SHEET_NAMES = new Set(['question1']);
@@ -19,36 +20,84 @@ class ChartContainer extends Component {
             commonProps: {
                 indexBy: 'id',
                 theme: { fontSize: 12 }
+            },
+            surveyQuestions: {
+                Question1: [],
+                Question2: []
             }
         };
+    }
 
+    componentDidMount() {
         this.fetchData();
     }
 
-    fetchData() {
-        Tabletop.init({
-            key: SURVEY_DATA_URL,
-            callback: (data, tabletop) => {
-                this.setState({ tabletop });
-            },
-            simpleSheet: true
-        });
+    fetchData(forceUpdate = false) {
+        const sheetCachedAt = localStorage.getItem('sheetCachedAt');
+        const currentTime = Date.now();
+
+        // Check once a day if we should update the cached sheet
+        if (
+            !sheetCachedAt ||
+            currentTime - sheetCachedAt > DAY_IN_MILLISECONDS ||
+            forceUpdate
+        ) {
+            Tabletop.init({
+                key: SURVEY_DATA_URL,
+                callback: (data, tabletop) => {
+                    for (const sheetName in data) {
+                        localStorage.removeItem(
+                            sheetName,
+                            JSON.stringify(data[sheetName].elements)
+                        );
+                        localStorage.setItem(
+                            sheetName,
+                            JSON.stringify(data[sheetName].elements)
+                        );
+                    }
+
+                    localStorage.removeItem('sheetCachedAt');
+                    localStorage.setItem('sheetCachedAt', Date.now());
+
+                    this.fetchCachedData();
+                }
+            });
+            return;
+        }
+
+        this.fetchCachedData();
+    }
+
+    fetchCachedData() {
+        const { surveyQuestions } = this.state;
+        const updatedQuestions = Object.assign({}, surveyQuestions);
+
+        for (const question in surveyQuestions) {
+            const questionData = JSON.parse(localStorage.getItem(question));
+
+            // Force a request for all data if we're missing a questions's data
+            if (!questionData) {
+                this.fetchData(true);
+                return;
+            }
+            updatedQuestions[question] = JSON.parse(
+                localStorage.getItem(question)
+            );
+        }
+        this.setState({ surveyQuestions: updatedQuestions });
     }
 
     render() {
-        const { tabletop, commonProps } = this.state;
+        const { surveyQuestions, commonProps } = this.state;
+
         return (
             <div>
                 <Question1
-                    responses={
-                        tabletop ? tabletop.sheets('Question1').elements : []
-                    }
+                    responses={surveyQuestions.Question1}
                     commonProps={commonProps}
                 />
                 <Question2
-                    responses={
-                        tabletop ? tabletop.sheets('Question2').elements : []
-                    }
+                    responses={surveyQuestions.Question2}
                     commonProps={commonProps}
                 />
             </div>
