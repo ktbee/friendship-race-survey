@@ -1,16 +1,17 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
-const Question1 = ({ responses }) => {
-    if (!responses) return null;
+const Question1 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) return null;
 
-    const commonProps = {
-        margin: { top: 20, right: 0, bottom: 20, left: 25 },
-        indexBy: 'id',
-        padding: 0.2,
-        labelSkipWidth: 16,
-        labelSkipHeight: 16
-    };
+    // const commonProps = {
+    //
+    //     indexBy: 'id',
+    //     padding: 0.2,
+    //     labelSkipWidth: 16,
+    //     labelSkipHeight: 16,
+    //     animate: true
+    // };
     const responseData = {
         None: 0,
         '1-4': 0,
@@ -42,6 +43,7 @@ const Question1 = ({ responses }) => {
                 colors={{ scheme: 'spectral' }}
                 colorBy="indexValue"
                 labelTextColor="#ffffff"
+                margin={{ top: 20, right: 0, bottom: 25, left: 25 }}
                 {...commonProps}
             />
         </div>
