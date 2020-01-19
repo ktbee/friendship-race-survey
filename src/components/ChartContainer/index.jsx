@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
 import Question2 from '@Components/Charts/Question2';
+import Question3 from '@Components/Charts/Question3';
 
 const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_URL =
     'https://docs.google.com/spreadsheets/d/16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE/edit?usp=sharing';
 const SHEET_NAMES = new Set(['question1']);
-const questionComponents = [Question1, Question2];
 
 class ChartContainer extends Component {
     constructor() {
@@ -23,7 +23,8 @@ class ChartContainer extends Component {
             },
             surveyQuestions: {
                 Question1: [],
-                Question2: []
+                Question2: [],
+                Question3: []
             }
         };
     }
@@ -98,6 +99,10 @@ class ChartContainer extends Component {
                 />
                 <Question2
                     responses={surveyQuestions.Question2}
+                    commonProps={commonProps}
+                />
+                <Question3
+                    responses={surveyQuestions.Question3}
                     commonProps={commonProps}
                 />
             </div>
