@@ -1,3 +1,7 @@
 .ui.grid.content-container--visualizations {
-    margin-top: 1rem;
+    margin: 1rem 0;
+}
+
+.outro {
+    margin: 5rem 0;
 }

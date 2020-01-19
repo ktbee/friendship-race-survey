@@ -15,7 +15,7 @@ const HeaderMenu = () => {
                 </a>
             </Menu.Item>
             <Menu.Item fitted="horizontally">
-                <h1>Race and Friendship</h1>
+                <h1>Race and Friendship Survey: Your Responses </h1>
             </Menu.Item>
         </Menu>
     );
