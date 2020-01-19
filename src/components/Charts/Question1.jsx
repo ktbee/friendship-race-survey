@@ -28,7 +28,7 @@ const Question1 = ({ commonProps, responses = [] }) => {
     return (
         <div className="chart">
             <h3>
-                The number of friendships that I have that cross racial lines.
+                The number of friendships that I have that cross racial lines
             </h3>
             <ResponsiveBar
                 data={compiledData}

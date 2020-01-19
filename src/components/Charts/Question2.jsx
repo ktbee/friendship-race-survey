@@ -39,7 +39,7 @@ const Question2 = ({ commonProps, responses = [] }) => {
         <div className="chart">
             <h3>How important is it to have friends of different races?</h3>
             <ResponsivePie
-                margin={{ top: 20, bottom: 20, left: 120, right: 120 }}
+                margin={{ top: 20, bottom: 0, left: 120, right: 120 }}
                 data={compiledData}
                 innerRadius={0.6}
                 padAngle={0.5}
