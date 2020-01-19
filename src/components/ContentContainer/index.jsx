@@ -15,15 +15,39 @@ class ContentContainer extends Component {
         return (
             <Container>
                 <div>
-                    <h2>How do perceptions of race affect our friendships?</h2>
+                    <h2>
+                        See how other people have answered questions about their
+                        friendship patterns.
+                    </h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nulla ornare neque quis sapien luctus gravida. Nullam
-                        elit nisi, auctor in iaculis nec, ornare sed risus.
-                        Maecenas in elit mattis, tincidunt sem non, luctus ante.
-                        Nam varius ultricies diam, in ultrices eros ultrices at.
-                        Orci varius natoque penatibus et magnis dis parturient
-                        montes, nascetur ridiculus mus.
+                        As part of a listener episode about race and friendship,
+                        the Death, Sex & Money podcast teamed up with
+                        <a href="https://www.dlplummer.com/">
+                            Dr. Deborah Plummer
+                        </a>{' '}
+                        to create{' '}
+                        <a href="https://www.surveymonkey.com/r/race-and-friendship">
+                            this survey
+                        </a>
+                        , which is based on those used in Dr. Plummer’s research
+                        on cross-racial friendships. [Haven’t taken the survey
+                        yet?{' '}
+                        <a href="https://www.surveymonkey.com/r/race-and-friendship">
+                            Do that first.
+                        </a>
+                        ]
+                    </p>
+                    <p>
+                        Use the demographic filters below to explore how people
+                        from around the country have answered questions about
+                        their own friendship patterns, and reflect on how they
+                        compare to your own. To read more about Dr. Plummer’s
+                        findings, check out her book, “Some of My Friends Are…”
+                        And to hear Death, Sex & Money episode featuring
+                        personal stories about race and friendship, go to{' '}
+                        <a href="http://deathsexmoney.org/friendship">
+                            deathsexmoney.org/friendship.
+                        </a>
                     </p>
                 </div>
                 <Grid stackable className="content-container--visualizations">
@@ -44,6 +68,18 @@ class ContentContainer extends Component {
                         </Grid.Column>
                     </Responsive>
                 </Grid>
+                <div className="outro">
+                    <p>
+                        <a href="https://www.wnycstudios.org/podcasts/deathsexmoney">
+                            Subscribe
+                        </a>{' '}
+                        to the Death, Sex & Money podcast. And{' '}
+                        <a href="https://wnyc.us5.list-manage.com/subscribe?u=4109fdd323aaac7078eadaa8f&id=566f296761">
+                            sign up
+                        </a>{' '}
+                        for the weekly Death, Sex & Money newsletter.
+                    </p>
+                </div>
             </Container>
         );
     }
