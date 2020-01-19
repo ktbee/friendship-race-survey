@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 const Question4 = ({ commonProps, responses = [] }) => {
     if (!responses.length) return null;
 
-    console.log('responses', responses);
-
     const responseData = {
         routine: 0,
         chance: 0
@@ -37,7 +35,8 @@ const Question4 = ({ commonProps, responses = [] }) => {
             id: 'Chance',
             label: '',
             label1: 'Chance meeting',
-            label2: '(such as in an exercise class, a restaurant, social gathering)',
+            label2:
+                '(such as in an exercise class, a restaurant, social gathering)',
             value: responseData.chance
         }
     ];

@@ -35,7 +35,7 @@ const FilterMenu = () => {
             <div className="filter-menu--heading">
                 <Checkbox
                     className="filter-menu--heading-checkbox"
-                    label="FILTER"
+                    label="FILTER RESPONDENTS"
                     onClick={onFilterClick}
                 />
             </div>
