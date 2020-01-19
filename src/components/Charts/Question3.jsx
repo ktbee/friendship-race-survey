@@ -81,7 +81,7 @@ const Question3 = ({ commonProps, responses = [] }) => {
         <div className="chart">
             <h3>
                 What prevents you from having more friends that are a race
-                different from your own?
+                different from your own? (check all that apply)
             </h3>
             <ResponsiveBar
                 data={compiledData}

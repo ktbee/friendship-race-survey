@@ -5,6 +5,7 @@ import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
 import Question2 from '@Components/Charts/Question2';
 import Question3 from '@Components/Charts/Question3';
+import Question4 from '@Components/Charts/Question4';
 
 const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_URL =
@@ -24,7 +25,8 @@ class ChartContainer extends Component {
             surveyQuestions: {
                 Question1: [],
                 Question2: [],
-                Question3: []
+                Question3: [],
+                Question4: []
             }
         };
     }
@@ -103,6 +105,10 @@ class ChartContainer extends Component {
                 />
                 <Question3
                     responses={surveyQuestions.Question3}
+                    commonProps={commonProps}
+                />
+                <Question4
+                    responses={surveyQuestions.Question4}
                     commonProps={commonProps}
                 />
             </div>
