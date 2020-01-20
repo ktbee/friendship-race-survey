@@ -13,7 +13,7 @@
 
 .ui.menu.header-menu h1 {
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .logo__container {
@@ -39,7 +39,7 @@
 
     .ui.menu.header-menu h1 {
         color: #ffffff;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .logo__container {
@@ -59,7 +59,7 @@
 
     .ui.menu.header-menu h1 {
         color: #ffffff;
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .logo__container {
@@ -68,5 +68,10 @@
 
     .ui.menu.header-menu a {
         width: var(--height-header-phone);
+    }
+
+    .header__title--main,
+    .header__title--sub {
+        display: block;
     }
 }
