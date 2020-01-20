@@ -13,7 +13,7 @@ class ContentContainer extends Component {
 
     render() {
         return (
-            <Container>
+            <Container className="content-container">
                 <div>
                     <h2>
                         See how other people have answered questions about their

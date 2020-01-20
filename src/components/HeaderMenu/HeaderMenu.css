@@ -13,7 +13,7 @@
 
 .ui.menu.header-menu h1 {
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .logo__container {
@@ -23,11 +23,12 @@
 .ui.menu.header-menu a {
     display: block;
     height: 100%;
-    width: calc(var(--height-header-desktop) - 10%);
+    width: var(--height-header-desktop);
 }
 
 .ui.menu.header-menu .logo__image {
     height: 100%;
+    max-width: 100%;
 }
 
 /* Tablets */
@@ -38,7 +39,7 @@
 
     .ui.menu.header-menu h1 {
         color: #ffffff;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .logo__container {
@@ -46,7 +47,7 @@
     }
 
     .ui.menu.header-menu a {
-        width: calc(var(--height-header-tablet) - 10%);
+        width: var(--height-header-tablet);
     }
 }
 
@@ -58,7 +59,7 @@
 
     .ui.menu.header-menu h1 {
         color: #ffffff;
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .logo__container {
@@ -66,6 +67,11 @@
     }
 
     .ui.menu.header-menu a {
-        width: calc(var(--height-header-phone) - 10%);
+        width: var(--height-header-phone);
+    }
+
+    .header__title--main,
+    .header__title--sub {
+        display: block;
     }
 }

@@ -5,3 +5,24 @@
 .outro {
     margin: 5rem 0;
 }
+
+h2 {
+    font-size: 1.75rem;
+}
+
+@media screen and (max-width: 770px) {
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Phones */
+@media screen and (max-width: 450px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
