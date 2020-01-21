@@ -3,8 +3,6 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question4 = ({ commonProps, responses = [] }) => {
-    if (!responses.length) return null;
-
     const responseData = {
         routine: 0,
         chance: 0

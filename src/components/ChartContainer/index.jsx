@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
@@ -9,13 +10,12 @@ import Question4 from '@Components/Charts/Question4';
 import Question5 from '@Components/Charts/Question5';
 
 const DAY_IN_MILLISECONDS = 86400000;
-const SURVEY_DATA_URL =
-    'https://docs.google.com/spreadsheets/d/16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE/edit?usp=sharing';
+const SURVEY_DATA_KEY = '16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE';
 const SHEET_NAMES = new Set(['question1']);
 
 class ChartContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             tabletop: null,
@@ -31,6 +31,8 @@ class ChartContainer extends Component {
                 Question5: []
             }
         };
+
+        this.filterResponses = this.filterResponses.bind(this);
     }
 
     componentDidMount() {
@@ -48,7 +50,7 @@ class ChartContainer extends Component {
             forceUpdate
         ) {
             Tabletop.init({
-                key: SURVEY_DATA_URL,
+                key: SURVEY_DATA_KEY,
                 callback: (data, tabletop) => {
                     for (const sheetName in data) {
                         localStorage.removeItem(
@@ -92,34 +94,61 @@ class ChartContainer extends Component {
         this.setState({ surveyQuestions: updatedQuestions });
     }
 
+    filterResponses(responses) {
+        const { filters } = this.props;
+        const filtersArray = Object.entries(filters);
+        if (!filtersArray.length) return responses;
+
+        const filteredResponses = responses.filter(response => {
+            return filtersArray.every(([type, value]) => {
+                if (value) {
+                    return response[type] === value;
+                }
+                return true;
+            });
+        });
+
+        return filteredResponses;
+    }
+
     render() {
         const { surveyQuestions, commonProps } = this.state;
+        const { filters } = this.props;
 
         return (
             <div>
                 <Question1
-                    responses={surveyQuestions.Question1}
+                    responses={this.filterResponses(surveyQuestions.Question1)}
                     commonProps={commonProps}
+                    filters={filters}
                 />
                 <Question2
-                    responses={surveyQuestions.Question2}
+                    responses={this.filterResponses(surveyQuestions.Question2)}
                     commonProps={commonProps}
+                    filters={filters}
                 />
                 <Question3
-                    responses={surveyQuestions.Question3}
+                    responses={this.filterResponses(surveyQuestions.Question3)}
                     commonProps={commonProps}
+                    filters={filters}
                 />
                 <Question4
-                    responses={surveyQuestions.Question4}
+                    responses={this.filterResponses(surveyQuestions.Question4)}
                     commonProps={commonProps}
+                    filters={filters}
                 />
                 <Question5
-                    responses={surveyQuestions.Question5}
+                    responses={this.filterResponses(surveyQuestions.Question5)}
                     commonProps={commonProps}
+                    filters={filters}
                 />
             </div>
         );
     }
 }
+
+ChartContainer.propTypes = {
+    filters: PropTypes.object.isRequired
+};
 
 export default ChartContainer;

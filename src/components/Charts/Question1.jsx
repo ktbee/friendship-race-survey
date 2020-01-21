@@ -3,8 +3,6 @@ import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
 const Question1 = ({ commonProps, responses = [] }) => {
-    if (!responses.length) return null;
-
     const responseData = {
         None: 0,
         '1-4': 0,
@@ -36,7 +34,7 @@ const Question1 = ({ commonProps, responses = [] }) => {
                 colors={{ scheme: 'spectral' }}
                 colorBy="indexValue"
                 labelTextColor="#ffffff"
-                margin={{ top: 20, right: 0, bottom: 25, left: 25 }}
+                margin={{ top: 20, right: 0, bottom: 25, left: 30 }}
                 {...commonProps}
             />
         </div>

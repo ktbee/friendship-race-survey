@@ -3,14 +3,13 @@ import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
 const Question3 = ({ commonProps, responses = [] }) => {
-    if (!responses.length) return null;
-
     const responseData = {
         priority: 0,
         time: 0,
         politics: 0,
+        faith: 0,
         fear: 0,
-        nieghborhood: 0,
+        neighborhood: 0,
         work: 0,
         leisure: 0,
         unknown: 0,
