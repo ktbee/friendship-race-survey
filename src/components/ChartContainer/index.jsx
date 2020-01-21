@@ -14,6 +14,7 @@ import Question8 from '@Components/Charts/Question8';
 import Question9 from '@Components/Charts/Question9';
 import Question10 from '@Components/Charts/Question10';
 import Question11 from '@Components/Charts/Question11';
+import Question12 from '@Components/Charts/Question12';
 
 const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_KEY = '16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE';
@@ -40,7 +41,8 @@ class ChartContainer extends Component {
                 Question8: [],
                 Question9: [],
                 Question10: [],
-                Question11: []
+                Question11: [],
+                Question12: []
             }
         };
 
@@ -176,6 +178,10 @@ class ChartContainer extends Component {
                 />
                 <Question11
                     responses={this.filterResponses(surveyQuestions.Question11)}
+                    commonProps={commonProps}
+                />
+                <Question12
+                    responses={this.filterResponses(surveyQuestions.Question12)}
                     commonProps={commonProps}
                 />
             </div>

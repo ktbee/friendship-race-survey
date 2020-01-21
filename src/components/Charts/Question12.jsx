@@ -2,15 +2,15 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
-const Question11 = ({ commonProps, responses = [] }) => {
+const Question12 = ({ commonProps, responses = [] }) => {
     const responseData = {
         True: 0,
         False: 0
     };
 
     responses.map(response => {
-        if (response.raceHistory) {
-            responseData[response.raceHistory]++;
+        if (response.groupMinority) {
+            responseData[response.groupMinority]++;
         }
     });
 
@@ -30,8 +30,8 @@ const Question11 = ({ commonProps, responses = [] }) => {
     return (
         <div className="chart">
             <h3>
-                America&apos;s history of race relations prevents people from
-                crossing racial lines in friendship.
+                I am uncomfortable in social settings where I am the only one
+                present of my racial group.
             </h3>
             <ResponsivePie
                 margin={{ top: 20, bottom: 0, left: 120, right: 120 }}
@@ -51,9 +51,9 @@ const Question11 = ({ commonProps, responses = [] }) => {
     );
 };
 
-Question11.propTypes = {
+Question12.propTypes = {
     commonProps: PropTypes.object.isRequired,
     responses: PropTypes.array.isRequired
 };
 
-export default Question11;
+export default Question12;
