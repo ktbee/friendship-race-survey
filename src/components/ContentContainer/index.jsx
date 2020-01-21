@@ -32,18 +32,20 @@ class ContentContainer extends Component {
                         friendship patterns.
                     </h2>
                     <p>
-                        As part of a listener episode about race and friendship,
-                        the Death, Sex & Money podcast teamed up with
+                        As part of{' '}
+                        <a href="https://www.wnycstudios.org/podcasts/deathsexmoney/episodes/race-and-friendship-death-sex-money">
+                            {' '}
+                            a listener episode about race and friendship
+                        </a>
+                        , the Death, Sex & Money podcast teamed up with{' '}
                         <a href="https://www.dlplummer.com/">
                             Dr. Deborah Plummer
                         </a>{' '}
                         to create{' '}
                         <a href="https://www.surveymonkey.com/r/race-and-friendship">
-                            this survey
-                        </a>
-                        , which is based on those used in Dr. Plummer’s research
-                        on cross-racial friendships. [Haven’t taken the survey
-                        yet?{' '}
+                            a survey about cross-racial friendships.
+                        </a>{' '}
+                        [Haven’t taken the survey yet?{' '}
                         <a href="https://www.surveymonkey.com/r/race-and-friendship">
                             Do that first.
                         </a>
@@ -51,12 +53,15 @@ class ContentContainer extends Component {
                     </p>
                     <p>
                         Use the demographic filters below to explore how people
-                        from around the country have answered questions about
-                        their own friendship patterns, and reflect on how they
-                        compare to your own. To read more about Dr. Plummer’s
-                        findings, check out her book, “Some of My Friends Are…”
-                        And to hear Death, Sex & Money episode featuring
-                        personal stories about race and friendship, go to{' '}
+                        from around the country have answered questions from
+                        that survey about their own friendship patterns, and
+                        reflect on how they compare to your own.
+                    </p>
+                    <p>
+                        To read more about Dr. Plummer’s findings, check out her
+                        book, “Some of My Friends Are…” And to hear a Death, Sex
+                        & Money episode featuring personal stories about race
+                        and friendship, go to{' '}
                         <a href="http://deathsexmoney.org/friendship">
                             deathsexmoney.org/friendship.
                         </a>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { Loader } from 'semantic-ui-react';
 
 import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
@@ -25,11 +26,11 @@ class ChartContainer extends Component {
         super(props);
 
         this.state = {
-            tabletop: null,
             commonProps: {
                 indexBy: 'id',
                 theme: { fontSize: 12 }
             },
+            dataLoading: false,
             surveyQuestions: {
                 Question1: [],
                 Question2: [],
@@ -56,6 +57,8 @@ class ChartContainer extends Component {
     fetchData(forceUpdate = false) {
         const sheetCachedAt = localStorage.getItem('sheetCachedAt');
         const currentTime = Date.now();
+
+        this.setState({ dataLoading: true });
 
         // Check once a day if we should update the cached sheet
         if (
@@ -105,7 +108,10 @@ class ChartContainer extends Component {
                 localStorage.getItem(question)
             );
         }
-        this.setState({ surveyQuestions: updatedQuestions });
+        this.setState({
+            surveyQuestions: updatedQuestions,
+            dataLoading: false
+        });
     }
 
     filterResponses(responses) {
@@ -126,8 +132,12 @@ class ChartContainer extends Component {
     }
 
     render() {
-        const { surveyQuestions, commonProps } = this.state;
+        const { commonProps, dataLoading, surveyQuestions } = this.state;
         const { filters } = this.props;
+
+        if (dataLoading) {
+            return <Loader active inline="centered" size="large" />;
+        }
 
         return (
             <div>
