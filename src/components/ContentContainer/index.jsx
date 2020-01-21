@@ -21,12 +21,11 @@ class ContentContainer extends Component {
         let updatedFilters = this.state.filters;
 
         if (data.checked) {
-            updatedFilters.push({ [data.filter]: data.label });
+            updatedFilters.push({ type: [data.filter], value: data.label });
         } else {
-            updatedFilters = updatedFilters.filter(filterObj => {
-                const [[key, value]] = Object.entries(filterObj);
-                return value != data.label;
-            });
+            updatedFilters = updatedFilters.filter(
+                filterObj => filterObj.value != data.label
+            );
         }
 
         this.setState({ filters: updatedFilters });
