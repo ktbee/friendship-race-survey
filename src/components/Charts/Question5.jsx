@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
-const Question3 = ({ commonProps, responses = [] }) => {
+const Question5 = ({ commonProps, responses = [] }) => {
     const responseData = {
         educationLevel: 0,
         socioeconomicLevel: 0,
@@ -89,9 +89,9 @@ const Question3 = ({ commonProps, responses = [] }) => {
     );
 };
 
-Question3.propTypes = {
+Question5.propTypes = {
     commonProps: PropTypes.object.isRequired,
     responses: PropTypes.array.isRequired
 };
 
-export default Question3;
+export default Question5;
