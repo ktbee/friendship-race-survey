@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
+import { del, get, set } from 'idb-keyval';
 
 import './ChartContainer.css';
 import Question1 from '@Components/Charts/Question1';
@@ -54,14 +55,15 @@ class ChartContainer extends Component {
         this.fetchData();
     }
 
-    fetchData(forceUpdate = false) {
-        const sheetCachedAt = localStorage.getItem('sheetCachedAt');
+    async fetchData(forceUpdate = false) {
+        const sheetCachedAt = await get('sheetCachedAt');
         const currentTime = Date.now();
 
         this.setState({ dataLoading: true });
 
         // Check once a day if we should update the cached sheet
         if (
+            !('indexedDB' in window) ||
             !sheetCachedAt ||
             currentTime - sheetCachedAt > DAY_IN_MILLISECONDS ||
             forceUpdate
@@ -69,21 +71,27 @@ class ChartContainer extends Component {
             Tabletop.init({
                 key: SURVEY_DATA_KEY,
                 callback: (data, tabletop) => {
+                    const { surveyQuestions } = this.state;
+                    const updatedQuestions = Object.assign({}, surveyQuestions);
+
                     for (const sheetName in data) {
-                        localStorage.removeItem(
-                            sheetName,
-                            JSON.stringify(data[sheetName].elements)
-                        );
-                        localStorage.setItem(
-                            sheetName,
-                            JSON.stringify(data[sheetName].elements)
-                        );
+                        updatedQuestions[sheetName] = data[sheetName].elements;
                     }
 
-                    localStorage.removeItem('sheetCachedAt');
-                    localStorage.setItem('sheetCachedAt', Date.now());
+                    this.setState({
+                        surveyQuestions: updatedQuestions,
+                        dataLoading: false
+                    });
 
-                    this.fetchCachedData();
+                    if (!('indexedDB' in window)) {
+                        return;
+                    }
+
+                    // Save response data in IndexedDB
+                    del('surveyQuestions');
+                    set('surveyQuestions', updatedQuestions);
+                    del('sheetCachedAt');
+                    set('sheetCachedAt', Date.now());
                 }
             });
             return;
@@ -92,24 +100,11 @@ class ChartContainer extends Component {
         this.fetchCachedData();
     }
 
-    fetchCachedData() {
+    async fetchCachedData() {
         const { surveyQuestions } = this.state;
-        const updatedQuestions = Object.assign({}, surveyQuestions);
-
-        for (const question in surveyQuestions) {
-            const questionData = JSON.parse(localStorage.getItem(question));
-
-            // Force a request for all data if we're missing a questions's data
-            if (!questionData) {
-                this.fetchData(true);
-                return;
-            }
-            updatedQuestions[question] = JSON.parse(
-                localStorage.getItem(question)
-            );
-        }
+        const cachedQuestions = await get('surveyQuestions');
         this.setState({
-            surveyQuestions: updatedQuestions,
+            surveyQuestions: cachedQuestions,
             dataLoading: false
         });
     }
