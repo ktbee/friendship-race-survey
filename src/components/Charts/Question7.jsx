@@ -29,8 +29,6 @@ const Question7 = ({ commonProps, responses = [] }) => {
             <ResponsiveBar
                 data={compiledData}
                 keys={['duration']}
-                colors={{ scheme: 'spectral' }}
-                colorBy="indexValue"
                 labelTextColor="#ffffff"
                 margin={{ top: 20, right: 0, bottom: 25, left: 30 }}
                 {...commonProps}

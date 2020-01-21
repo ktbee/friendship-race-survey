@@ -34,8 +34,6 @@ const Question9 = ({ commonProps, responses = [] }) => {
             <ResponsiveBar
                 data={compiledData}
                 keys={['opinion']}
-                colors={{ scheme: 'spectral' }}
-                colorBy="indexValue"
                 layout="horizontal"
                 labelTextColor="#ffffff"
                 margin={{ top: 0, right: 0, bottom: 25, left: 120 }}
