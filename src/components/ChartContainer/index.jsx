@@ -96,10 +96,16 @@ class ChartContainer extends Component {
 
     filterResponses(responses) {
         const { filters } = this.props;
-        if (!filters.length) return responses;
+        const filtersArray = Object.entries(filters);
+        if (!filtersArray.length) return responses;
 
         const filteredResponses = responses.filter(response => {
-            return filters.every(({ type, value }) => response[type] === value);
+            return filtersArray.every(([type, value]) => {
+                if (value) {
+                    return response[type] === value;
+                }
+                return true;
+            });
         });
 
         return filteredResponses;
@@ -142,7 +148,7 @@ class ChartContainer extends Component {
 }
 
 ChartContainer.propTypes = {
-    filters: PropTypes.array.isRequired
+    filters: PropTypes.object.isRequired
 };
 
 export default ChartContainer;

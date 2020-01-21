@@ -6,9 +6,22 @@ import { Checkbox } from 'semantic-ui-react';
 import './FilterMenu.css';
 import FILTER_OPTIONS from './filterOptions';
 
+const INITIAL_FILTERS = {
+    age: '',
+    education: '',
+    ethnicity: '',
+    gender: '',
+    income: '',
+    region: ''
+};
+
 class FilterMenu extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            filters: INITIAL_FILTERS
+        };
 
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
         this.onHeadingClick = this.onHeadingClick.bind(this);
@@ -16,12 +29,24 @@ class FilterMenu extends Component {
     }
 
     onCheckboxChange(event, data) {
-        this.props.handleFilterChange(data);
+        // Update state based on whether or not a checkbox should be checked
+        const filterValue = data.checked ? data.label : '';
+        const updatedFilters = Object.assign({}, this.state.filters, {
+            [data.filter]: filterValue
+        });
+
+        this.setState({ filters: updatedFilters });
+        this.props.handleFilterChange(updatedFilters);
     }
 
     onHeadingClick(event, { checked }) {
         const filterOptions = document.querySelector('.filter-menu--options');
+
         filterOptions.style.display = checked ? 'block' : 'none';
+        if (!checked) {
+            this.setState({ filters: INITIAL_FILTERS });
+            this.props.handleFilterChange(INITIAL_FILTERS);
+        }
     }
 
     getFilterCheckboxes(options) {
@@ -31,6 +56,7 @@ class FilterMenu extends Component {
                 filtersCheckboxes.push(
                     <li key={filter}>
                         <Checkbox
+                            checked={this.state.filters[type] === filter}
                             label={filter}
                             filter={type}
                             onChange={this.onCheckboxChange}

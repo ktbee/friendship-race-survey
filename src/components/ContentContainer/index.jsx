@@ -11,23 +11,13 @@ class ContentContainer extends Component {
         super(props);
 
         this.state = {
-            filters: []
+            filters: {}
         };
 
         this.handleFilterChange = this.handleFilterChange.bind(this);
     }
 
-    handleFilterChange(data) {
-        let updatedFilters = this.state.filters;
-
-        if (data.checked) {
-            updatedFilters.push({ type: [data.filter], value: data.label });
-        } else {
-            updatedFilters = updatedFilters.filter(
-                filterObj => filterObj.value != data.label
-            );
-        }
-
+    handleFilterChange(updatedFilters) {
         this.setState({ filters: updatedFilters });
     }
 
