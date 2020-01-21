@@ -3,6 +3,18 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question12 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    I am uncomfortable in social settings where I am the only
+                    one present of my racial group.
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         True: 0,
         False: 0

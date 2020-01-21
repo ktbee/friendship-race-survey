@@ -3,6 +3,18 @@ import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
 const Question1 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    The number of friendships that I have that cross racial
+                    lines
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         None: 0,
         '1-4': 0,

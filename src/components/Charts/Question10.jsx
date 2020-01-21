@@ -3,6 +3,18 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question10 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    Societal messages about race relations influence my choice
+                    to have friends that cross racial lines.
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         True: 0,
         False: 0

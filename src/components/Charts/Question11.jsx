@@ -3,6 +3,18 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question11 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    America&apos;s history of race relations prevents people
+                    from crossing racial lines in friendship.
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         True: 0,
         False: 0

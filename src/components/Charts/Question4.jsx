@@ -3,6 +3,18 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question4 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    My friendship with someone of another race was formed
+                    from...
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         routine: 0,
         chance: 0
@@ -41,7 +53,9 @@ const Question4 = ({ commonProps, responses = [] }) => {
 
     return (
         <div className="chart">
-            <h3>The friendship was formed from...</h3>
+            <h3>
+                My friendship with someone of another race was formed from...
+            </h3>
             <ResponsivePie
                 margin={{ top: 20, bottom: 0, left: 120, right: 120 }}
                 data={compiledData}
