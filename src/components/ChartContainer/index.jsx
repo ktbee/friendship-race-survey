@@ -9,8 +9,7 @@ import Question4 from '@Components/Charts/Question4';
 import Question5 from '@Components/Charts/Question5';
 
 const DAY_IN_MILLISECONDS = 86400000;
-const SURVEY_DATA_URL =
-    'https://docs.google.com/spreadsheets/d/16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE/edit?usp=sharing';
+const SURVEY_DATA_KEY = '16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE';
 const SHEET_NAMES = new Set(['question1']);
 
 class ChartContainer extends Component {
@@ -48,7 +47,7 @@ class ChartContainer extends Component {
             forceUpdate
         ) {
             Tabletop.init({
-                key: SURVEY_DATA_URL,
+                key: SURVEY_DATA_KEY,
                 callback: (data, tabletop) => {
                     for (const sheetName in data) {
                         localStorage.removeItem(

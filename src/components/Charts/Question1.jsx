@@ -36,7 +36,7 @@ const Question1 = ({ commonProps, responses = [] }) => {
                 colors={{ scheme: 'spectral' }}
                 colorBy="indexValue"
                 labelTextColor="#ffffff"
-                margin={{ top: 20, right: 0, bottom: 25, left: 25 }}
+                margin={{ top: 20, right: 0, bottom: 25, left: 30 }}
                 {...commonProps}
             />
         </div>

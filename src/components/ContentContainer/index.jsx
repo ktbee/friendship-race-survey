@@ -7,11 +7,34 @@ import ChartContainer from '@Components/ChartContainer';
 import FilterMenu from '@Components/FilterMenu';
 
 class ContentContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filters: []
+        };
+
+        this.handleFilterChange = this.handleFilterChange.bind(this);
+    }
+
+    handleFilterChange(data) {
+        let updatedFilters = this.state.filters;
+
+        if (data.checked) {
+            updatedFilters.push({ [data.filter]: data.label });
+        } else {
+            updatedFilters = updatedFilters.filter(filterObj => {
+                const [[key, value]] = Object.entries(filterObj);
+                return value != data.label;
+            });
+        }
+
+        this.setState({ filters: updatedFilters });
     }
 
     render() {
+        const { filters } = this.state;
+
         return (
             <Container className="content-container">
                 <div>
@@ -53,18 +76,22 @@ class ContentContainer extends Component {
                 <Grid stackable className="content-container--visualizations">
                     <Responsive as={Grid.Row} minWidth={771}>
                         <Grid.Column width={10}>
-                            <ChartContainer />
+                            <ChartContainer filters={filters} />
                         </Grid.Column>
                         <Grid.Column width={6}>
-                            <FilterMenu />
+                            <FilterMenu
+                                handleFilterChange={this.handleFilterChange}
+                            />
                         </Grid.Column>
                     </Responsive>
                     <Responsive as={Grid.Row} maxWidth={770}>
                         <Grid.Column width={6}>
-                            <FilterMenu />
+                            <FilterMenu
+                                handleFilterChange={this.handleFilterChange}
+                            />
                         </Grid.Column>
                         <Grid.Column width={16}>
-                            <ChartContainer />
+                            <ChartContainer filters={filters} />
                         </Grid.Column>
                     </Responsive>
                 </Grid>
