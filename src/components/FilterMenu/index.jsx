@@ -52,12 +52,14 @@ class FilterMenu extends Component {
     getFilterCheckboxes(options) {
         return Object.entries(options).map(([type, filters]) => {
             const filtersCheckboxes = [];
-            filters.value.forEach(filter => {
+            const filterValues = Object.entries(filters.value);
+
+            filterValues.map(([label, acceptedValues]) => {
                 filtersCheckboxes.push(
-                    <li key={filter}>
+                    <li key={label}>
                         <Checkbox
-                            checked={this.state.filters[type] === filter}
-                            label={filter}
+                            checked={this.state.filters[type] === label}
+                            label={label}
                             filter={type}
                             onChange={this.onCheckboxChange}
                         />

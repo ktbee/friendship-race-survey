@@ -5,6 +5,7 @@ import { Loader } from 'semantic-ui-react';
 import { del, get, set } from 'idb-keyval';
 
 import './ChartContainer.css';
+import FILTER_OPTIONS from '@Components/FilterMenu/filterOptions';
 import Question1 from '@Components/Charts/Question1';
 import Question2 from '@Components/Charts/Question2';
 import Question3 from '@Components/Charts/Question3';
@@ -20,7 +21,6 @@ import Question12 from '@Components/Charts/Question12';
 
 const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_KEY = '16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE';
-const SHEET_NAMES = new Set(['question1']);
 
 class ChartContainer extends Component {
     constructor(props) {
@@ -28,10 +28,13 @@ class ChartContainer extends Component {
 
         this.state = {
             commonProps: {
+                colors: { scheme: 'spectral' },
+                colorBy: 'index',
                 indexBy: 'id',
                 theme: { fontSize: 12 }
             },
             dataLoading: false,
+            FILTER_OPTIONS: FILTER_OPTIONS,
             surveyQuestions: {
                 Question1: [],
                 Question2: [],
@@ -115,9 +118,17 @@ class ChartContainer extends Component {
         if (!filtersArray.length) return responses;
 
         const filteredResponses = responses.filter(response => {
+            const { FILTER_OPTIONS } = this.state;
+
             return filtersArray.every(([type, value]) => {
                 if (value) {
-                    return response[type] === value;
+                    const acceptedValues = FILTER_OPTIONS[type]['value'][value];
+
+                    if (Array.isArray(acceptedValues)) {
+                        return acceptedValues.includes(response[type]);
+                    }
+
+                    return acceptedValues(response[type]);
                 }
                 return true;
             });

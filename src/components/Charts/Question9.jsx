@@ -3,6 +3,18 @@ import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
 const Question9 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>
+                    Friendships across racial lines are essential for making
+                    progress to improve race relations.
+                </h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         'Strongly agree': 0,
         Agree: 0,
@@ -34,8 +46,6 @@ const Question9 = ({ commonProps, responses = [] }) => {
             <ResponsiveBar
                 data={compiledData}
                 keys={['opinion']}
-                colors={{ scheme: 'spectral' }}
-                colorBy="indexValue"
                 layout="horizontal"
                 labelTextColor="#ffffff"
                 margin={{ top: 0, right: 0, bottom: 25, left: 120 }}

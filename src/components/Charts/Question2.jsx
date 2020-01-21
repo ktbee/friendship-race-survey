@@ -3,6 +3,15 @@ import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
 const Question2 = ({ commonProps, responses = [] }) => {
+    if (!responses.length) {
+        return (
+            <div className="chart">
+                <h3>How important is it to have friends of different races?</h3>
+                <h4>No Responses Available</h4>
+            </div>
+        );
+    }
+
     const responseData = {
         'Very important': 0,
         'Somewhat important': 0,
