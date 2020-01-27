@@ -48,7 +48,8 @@ class ChartContainer extends Component {
                 Question10: [],
                 Question11: [],
                 Question12: []
-            }
+            },
+            negativeResponses: ['FALSE', 'Not Answered']
         };
 
         this.filterResponses = this.filterResponses.bind(this);
@@ -138,8 +139,12 @@ class ChartContainer extends Component {
     }
 
     render() {
-        const { commonProps, dataLoading, surveyQuestions } = this.state;
-        const { filters } = this.props;
+        const {
+            commonProps,
+            dataLoading,
+            surveyQuestions,
+            negativeResponses
+        } = this.state;
 
         if (dataLoading) {
             return <Loader active inline="centered" size="large" />;
@@ -150,55 +155,62 @@ class ChartContainer extends Component {
                 <Question1
                     responses={this.filterResponses(surveyQuestions.Question1)}
                     commonProps={commonProps}
-                    filters={filters}
+                    negativeResponses={negativeResponses}
                 />
                 <Question2
                     responses={this.filterResponses(surveyQuestions.Question2)}
                     commonProps={commonProps}
-                    filters={filters}
+                    negativeResponses={negativeResponses}
                 />
                 <Question3
                     responses={this.filterResponses(surveyQuestions.Question3)}
                     commonProps={commonProps}
-                    filters={filters}
+                    negativeResponses={negativeResponses}
                 />
                 <Question4
                     responses={this.filterResponses(surveyQuestions.Question4)}
                     commonProps={commonProps}
-                    filters={filters}
+                    negativeResponses={negativeResponses}
                 />
                 <Question5
                     responses={this.filterResponses(surveyQuestions.Question5)}
                     commonProps={commonProps}
-                    filters={filters}
+                    negativeResponses={negativeResponses}
                 />
                 <Question6
                     responses={this.filterResponses(surveyQuestions.Question6)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question7
                     responses={this.filterResponses(surveyQuestions.Question7)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question8
                     responses={this.filterResponses(surveyQuestions.Question8)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question9
                     responses={this.filterResponses(surveyQuestions.Question9)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question10
                     responses={this.filterResponses(surveyQuestions.Question10)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question11
                     responses={this.filterResponses(surveyQuestions.Question11)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
                 <Question12
                     responses={this.filterResponses(surveyQuestions.Question12)}
                     commonProps={commonProps}
+                    negativeResponses={negativeResponses}
                 />
             </div>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
-const Question12 = ({ commonProps, responses = [] }) => {
+const Question12 = ({ commonProps, negativeResponses, responses = [] }) => {
     if (!responses.length) {
         return (
             <div className="chart">
@@ -21,7 +21,10 @@ const Question12 = ({ commonProps, responses = [] }) => {
     };
 
     responses.map(response => {
-        if (response.groupMinority) {
+        if (
+            response.groupMinority &&
+            !negativeResponses.includes(response.groupMinority)
+        ) {
             responseData[response.groupMinority]++;
         }
     });
@@ -65,6 +68,7 @@ const Question12 = ({ commonProps, responses = [] }) => {
 
 Question12.propTypes = {
     commonProps: PropTypes.object.isRequired,
+    negativeResponses: PropTypes.array.isRequired,
     responses: PropTypes.array.isRequired
 };
 
