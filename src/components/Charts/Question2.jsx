@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
-const Question2 = ({ commonProps, responses = [] }) => {
+const Question2 = ({ commonProps, negativeResponses, responses = [] }) => {
     if (!responses.length) {
         return (
             <div className="chart">
@@ -19,7 +19,10 @@ const Question2 = ({ commonProps, responses = [] }) => {
     };
 
     responses.map(response => {
-        if (response.differentFriendRaceImportance) {
+        if (
+            response.differentFriendRaceImportance &&
+            !negativeResponses.includes(response.differentFriendRaceImportance)
+        ) {
             responseData[response.differentFriendRaceImportance]++;
         }
     });
@@ -46,7 +49,7 @@ const Question2 = ({ commonProps, responses = [] }) => {
         <div className="chart">
             <h3>How important is it to have friends of different races?</h3>
             <ResponsivePie
-                margin={{ top: 20, bottom: 0, left: 120, right: 120 }}
+                margin={{ top: 20, bottom: 0, left: 130, right: 120 }}
                 data={compiledData}
                 innerRadius={0.6}
                 padAngle={0.5}
@@ -65,6 +68,7 @@ const Question2 = ({ commonProps, responses = [] }) => {
 
 Question2.propTypes = {
     commonProps: PropTypes.object.isRequired,
+    negativeResponses: PropTypes.array.isRequired,
     responses: PropTypes.array.isRequired
 };
 

@@ -83,6 +83,7 @@ const Question4 = ({ commonProps, responses = [] }) => {
 
 Question4.propTypes = {
     commonProps: PropTypes.object.isRequired,
+    negativeResponses: PropTypes.array.isRequired,
     responses: PropTypes.array.isRequired
 };
 

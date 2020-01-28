@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
-const Question3 = ({ commonProps, responses = [] }) => {
+const Question3 = ({ commonProps, negativeResponses, responses = [] }) => {
     if (!responses.length) {
         return (
             <div className="chart">
@@ -30,7 +30,13 @@ const Question3 = ({ commonProps, responses = [] }) => {
 
     responses.map(response => {
         for (const column in response) {
-            if (response[column]) responseData[column]++;
+            const questionResponse = response[column];
+            if (
+                questionResponse &&
+                !negativeResponses.includes(questionResponse)
+            ) {
+                responseData[column]++;
+            }
         }
     });
 
@@ -113,6 +119,7 @@ const Question3 = ({ commonProps, responses = [] }) => {
 
 Question3.propTypes = {
     commonProps: PropTypes.object.isRequired,
+    negativeResponses: PropTypes.array.isRequired,
     responses: PropTypes.array.isRequired
 };
 
