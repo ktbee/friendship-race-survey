@@ -6,18 +6,7 @@ import { del, get, set } from 'idb-keyval';
 
 import './ChartContainer.css';
 import FILTER_OPTIONS from '@Components/FilterMenu/filterOptions';
-import Question1 from '@Components/Charts/Question1';
-import Question2 from '@Components/Charts/Question2';
-import Question3 from '@Components/Charts/Question3';
-import Question4 from '@Components/Charts/Question4';
-import Question5 from '@Components/Charts/Question5';
-import Question6 from '@Components/Charts/Question6';
-import Question7 from '@Components/Charts/Question7';
-import Question8 from '@Components/Charts/Question8';
-import Question9 from '@Components/Charts/Question9';
-import Question10 from '@Components/Charts/Question10';
-import Question11 from '@Components/Charts/Question11';
-import Question12 from '@Components/Charts/Question12';
+import * as Charts from '@Components/Charts';
 
 const DAY_IN_MILLISECONDS = 86400000;
 const SURVEY_DATA_KEY = '16YSXlYiE1acxoCjznUAT9M409YXyvNnPArJm5lTyQHE';
@@ -145,75 +134,26 @@ class ChartContainer extends Component {
             surveyQuestions,
             negativeResponses
         } = this.state;
+        const ChartComponents = [];
 
         if (dataLoading) {
             return <Loader active inline="centered" size="large" />;
         }
 
-        return (
-            <div>
-                <Question1
-                    responses={this.filterResponses(surveyQuestions.Question1)}
+        for (const question in surveyQuestions) {
+            const Chart = Charts[question];
+
+            ChartComponents.push(
+                <Chart
+                    key={question}
+                    responses={this.filterResponses(surveyQuestions[question])}
                     commonProps={commonProps}
                     negativeResponses={negativeResponses}
                 />
-                <Question2
-                    responses={this.filterResponses(surveyQuestions.Question2)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question3
-                    responses={this.filterResponses(surveyQuestions.Question3)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question4
-                    responses={this.filterResponses(surveyQuestions.Question4)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question5
-                    responses={this.filterResponses(surveyQuestions.Question5)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question6
-                    responses={this.filterResponses(surveyQuestions.Question6)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question7
-                    responses={this.filterResponses(surveyQuestions.Question7)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question8
-                    responses={this.filterResponses(surveyQuestions.Question8)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question9
-                    responses={this.filterResponses(surveyQuestions.Question9)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question10
-                    responses={this.filterResponses(surveyQuestions.Question10)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question11
-                    responses={this.filterResponses(surveyQuestions.Question11)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-                <Question12
-                    responses={this.filterResponses(surveyQuestions.Question12)}
-                    commonProps={commonProps}
-                    negativeResponses={negativeResponses}
-                />
-            </div>
-        );
+            );
+        }
+
+        return ChartComponents;
     }
 }
 
