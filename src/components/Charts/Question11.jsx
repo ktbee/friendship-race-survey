@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import PropTypes from 'prop-types';
 
-const Question11 = ({ commonProps, negativeResponses, responses = [] }) => {
+const Question11 = ({ commonProps, responses = [] }) => {
     if (!responses.length) {
         return (
             <div className="chart">
@@ -16,29 +16,27 @@ const Question11 = ({ commonProps, negativeResponses, responses = [] }) => {
     }
 
     const responseData = {
-        True: 0,
-        False: 0
+        true: 0,
+        false: 0
     };
 
     responses.map(response => {
-        if (
-            response.raceHistory &&
-            !negativeResponses.includes(response.raceHistory)
-        ) {
-            responseData[response.raceHistory]++;
-        }
+        if (!response.raceHistory) return;
+
+        const answer = response.raceHistory.toLowerCase();
+        responseData[answer]++;
     });
 
     let compiledData = [
         {
             id: 'True',
             label: 'True',
-            value: responseData['True']
+            value: responseData.true
         },
         {
             id: 'False',
             label: 'False',
-            value: responseData['False']
+            value: responseData.false
         }
     ];
 
